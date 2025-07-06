@@ -1,70 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>مشغل خارجي للبث المباشر</title>
+  <title>تشغيل فيديو مشفر في xPola Player</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      height: 100%;
-      width: 100%;
-    }
-    #video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
+    body {
       background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #16a085;
     }
   </style>
 </head>
 <body>
 
-<video id="video" controls autoplay></video>
+  <h2>تشغيل رابط مشفر في xPola Player</h2>
+  <input type="text" id="encryptedUrl" placeholder="أدخل الرابط المشفر هنا">
+  <button onclick="openEncrypted()">تشغيل الآن</button>
 
-<script>
-  const video = document.getElementById('video');
-
-  // 🔁 استخرج رابط البث من عنوان URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const streamUrl = urlParams.get('url');
-
-  function requestFullScreen(el) {
-    if (el.requestFullscreen) {
-      el.requestFullscreen();
-    } else if (el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen();
-    } else if (el.msRequestFullscreen) {
-      el.msRequestFullscreen();
+  <script>
+    function openEncrypted() {
+      const encrypted = document.getElementById("encryptedUrl").value.trim();
+      if (!encrypted) {
+        alert("يرجى إدخال رابط مشفر أولاً");
+        return;
+      }
+      const intentUrl = `intent://XPOLA${encrypted}#Intent;scheme=xmtv;package=com.xpola.player;end`;
+      window.location.href = intentUrl;
     }
-  }
-
-  if (streamUrl) {
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(streamUrl);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        video.play();
-        requestFullScreen(video);
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = streamUrl;
-      video.addEventListener('loadedmetadata', function () {
-        video.play();
-        requestFullScreen(video);
-      });
-    } else {
-      alert('متصفحك لا يدعم تشغيل هذا النوع من البث.');
-    }
-  } else {
-    alert('⚠️ لم يتم العثور على رابط البث.');
-  }
-</script>
+  </script>
 
 </body>
 </html>
