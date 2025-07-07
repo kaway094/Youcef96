@@ -1,35 +1,135 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open URL Video in xPola Player</title>
-    <meta name="description" content="Experience seamless video playback with Xpola Player. Our page allows you to effortlessly play video URLs, offering high-quality streaming with minimal buffering. Perfect for viewers seeking an optimized watching experience. Click to enjoy your favorite videos now.">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png" />
-	<meta property="og:image" content=""/>
-
-<style> body { display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #000;
-    background-image: url('');
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-position: center; 
-
- } .play-button { background-color: #f7f7f7; color: #fff; border: none; padding: 10px; font-size: 24px; cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; } .play-button:hover { background-color: #999; } .message-box { background-color: #333; border-radius: 8px; padding: 20px; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; z-index: 1000; } .message-box p { margin: 0 0 20px; color: #ecf0f1; } } .message-box .actions { margin-top: 20px; } .message-box button { background-color: transparent; border: none; color: #f40; font-size: 16px; margin: 0 10px; padding: 6px; cursor: pointer; } .message-box button:hover { text-decoration: underline; } .message-box .checkbox-container { display: flex; align-items: center; justify-content: center; margin-top: 20px; } .message-box .checkbox-container input { margin-right: 10px; } label { color: #9E9E9E; } 
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Houda Player - Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0e2c;
+      color: #fff;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #1b1b3a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    label {
+      font-weight: bold;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00c853;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    textarea.output {
+      height: 200px;
+      background-color: #0a0a23;
+      color: #00ff90;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Houda Player Code Generator</h2>
+    
+    <div class="section">
+      <label>Video URL *</label>
+      <input type="text" id="videoUrl" placeholder="https://example.com/video.m3u8" />
 
-<button onClick="location.href='intent://XPOLA808eGRkYGMqPz9nZ2c+Y2B/YmR8fz58eWZ1P1JVWV49Iz9kYnFze2M9ZiFxIT99f35/Pn0jZShseGRkYHNxfnFiaS12cXxjdWxzcWNkLXZxfGN1bGR5ZHx1LVh0bHFgYHx5fnsteX52fz5kJGc+ZmA+cWB7#Intent;scheme=xmtv;package=com.xpola.player;end'" class="play-button">
-<svg fill="#000000" height="80px" width="80px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve">
-    <g>
-        <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"/>
-        <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/>
-    </g>
-</svg>
-</button>
+      <label>Server Name</label>
+      <input type="text" id="serverName" placeholder="My Server" />
 
+      <label>Play In</label>
+      <select id="playIn">
+        <option value="EXO">EXO</option>
+        <option value="WEB">WEB</option>
+        <option value="IFRAME">IFRAME</option>
+        <option value="WEB2EXO">WEB2EXO</option>
+        <option value="M3U">M3U</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>User Agent</label>
+      <input type="text" id="userAgent" placeholder="e.g. IPTV App UA" />
+
+      <label>Referer</label>
+      <input type="text" id="referer" />
+
+      <label>Origin</label>
+      <input type="text" id="origin" />
+
+      <label>Cookie</label>
+      <input type="text" id="cookie" placeholder="name=joe; app=houda; id=value" />
+    </div>
+
+    <div class="section">
+      <label>DRM License Key</label>
+      <input type="text" id="drmKey" />
+      <label>DRM Type</label>
+      <select id="drmType">
+        <option value="clearkey">Clearkey</option>
+        <option value="widevine">Widevine</option>
+        <option value="playready">Playready</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>App Logo (URL)</label>
+      <input type="text" id="appLogo" placeholder="https://example.com/logo.png" />
+
+      <label>Download URL</label>
+      <input type="text" id="downloadUrl" placeholder="https://example.com/app.apk" />
+    </div>
+
+    <button onclick="generateCode()">Generate Code</button>
+
+    <div class="section">
+      <label>Generated Code</label>
+      <textarea id="output" class="output" readonly></textarea>
+    </div>
+  </div>
+
+  <script>
+    function generateCode() {
+      const data = {
+        videoUrl: document.getElementById('videoUrl').value,
+        serverName: document.getElementById('serverName').value,
+        playIn: document.getElementById('playIn').value,
+        userAgent: document.getElementById('userAgent').value,
+        referer: document.getElementById('referer').value,
+        origin: document.getElementById('origin').value,
+        cookie: document.getElementById('cookie').value,
+        drmKey: document.getElementById('drmKey').value,
+        drmType: document.getElementById('drmType').value,
+        appLogo: document.getElementById('appLogo').value,
+        downloadUrl: document.getElementById('downloadUrl').value
+      };
+
+      const json = JSON.stringify(data, null, 2);
+      document.getElementById('output').value = json;
+    }
+  </script>
 </body>
-
 </html>
